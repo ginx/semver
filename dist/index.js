@@ -3222,7 +3222,16 @@ async function run() {
     // core.debug(context)
     // core.debug(context.repo)
 
-    semver.inc(version, 'prerelease', 'beta')
+    if (context.payload.head_commit.message.indexOf("#major")) {
+      semver.inc(version, 'major')
+    } else if (context.payload.head_commit.message.indexOf("#minor")) {
+      semver.inc(version, 'minor')
+    } else if (context.payload.head_commit.message.indexOf("#patch")) {
+      semver.inc(version, 'patch')
+    } else {
+      semver.inc(version, 'prerelease', 'beta')
+    }
+
     console.log(version.version);
 
     request = await octokit.git.createTag({

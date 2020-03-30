@@ -25,9 +25,6 @@ async function get_git_tags(cwd) {
 
 // most @actions toolkit packages have async methods
 async function run() {
-  console.log("Debug")
-  exec.exec("ls")
-
   try {
     let output = await get_git_tags();
     let versions = output
@@ -57,38 +54,24 @@ async function run() {
     core.debug(context)
     core.debug(context.repo)
 
-    request = await octokit.git.getRef({
+    semver.inc(version, 'prerelease', 'beta')
+
+    request = await octokit.git.createTag({
       ...context.repo,
-      ref: context.ref.replace('refs/', '')
+      tag: 'v' + version.version,
+      message: version.version,
+      object: process.env.GITHUB_SHA,
+      type: 'commit',
     })
 
-    let ref = request.data
+    let tag = request.data
 
-    request = await octokit.git.getCommit({
-      ...context.repo,
-      commit_sha: ref.object.sha,
-    });
-
-    let commit = request.data
-
-    core.debug(commit)
-
-    // request = await octokit.git.createTag({
-    //   ...context.repo,
-    //   tag: 'v' + version.version,
-    //   message: version.version,
-    //   object: ref.object.sha,
-    //   type: ref.object.type,
-    // })
-
-    // let tag = request.data
-
-    // request = await octokit.git.createRef({
-    //   owner: context.repo.owner,
-    //   repo: context.repo.repo,
-    //   ref: 'refs/tags/' + tag.tag,
-    //   sha: tag.object.sha,
-    // })
+    request = await octokit.git.createRef({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      ref: 'refs/tags/' + tag.tag,
+      sha: tag.object.sha,
+    })
 
     // console.log(request.data)
 

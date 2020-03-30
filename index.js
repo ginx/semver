@@ -54,7 +54,7 @@ async function run() {
     // core.debug(context)
     // core.debug(context.repo)
 
-    semver = semver.inc(version, 'prerelease', 'beta')
+    version = semver.inc(version, 'prerelease', 'beta')
     console.log(version.version);
 
     request = await octokit.git.createTag({

@@ -3214,14 +3214,6 @@ async function run() {
 
     let request;
 
-    // console.log(process.env)
-    // console.log(context)
-    // console.log(context.repo)
-
-    // core.debug(process.env)
-    // core.debug(context)
-    // core.debug(context.repo)
-
     if (context.payload.head_commit.message.indexOf("#major") != -1) {
       semver.inc(version, 'major')
     } else if (context.payload.head_commit.message.indexOf("#minor") != -1) {

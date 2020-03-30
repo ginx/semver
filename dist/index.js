@@ -3207,6 +3207,8 @@ async function run() {
 
     let version = versions.length ? versions[versions.length - 1] : semver.parse('0.0.0');
 
+    console.log(version.version);
+
     const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
     const context = github.context;
 

@@ -3243,16 +3243,6 @@ async function run() {
       sha: tag.object.sha,
     })
 
-    // console.log(request.data)
-
-    // console.log(context.ref)
-    // console.log(context.repo)
-    // console.log(context.payload)
-
-    // console.log(semver.inc(version, 'major'))
-    // console.log(semver.inc(version, 'minor'))
-    // console.log(semver.inc(version, 'patch'))
-
     core.setOutput('version', major);
     core.setOutput('major', major);
     core.setOutput('minor', minor);

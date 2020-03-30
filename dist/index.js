@@ -3202,7 +3202,7 @@ async function run() {
 
     versions.sort(semver.compare);
 
-    let version = versions.length ? versions[versions.length - 1] : semver.parse('0.0.0');
+    let version = semver.parse(versions.length ? versions[versions.length - 1].version : '0.0.0');
 
     console.log(version.version);
 
@@ -3222,7 +3222,7 @@ async function run() {
     // core.debug(context)
     // core.debug(context.repo)
 
-    version = semver.inc(version, 'prerelease', 'beta')
+    semver.inc(version, 'prerelease', 'beta')
     console.log(version.version);
 
     request = await octokit.git.createTag({

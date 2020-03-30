@@ -25,6 +25,9 @@ async function get_git_tags(cwd) {
 
 // most @actions toolkit packages have async methods
 async function run() {
+  console.log("Debug")
+  exec.exec("ls")
+
   try {
     let output = await get_git_tags();
     let versions = output

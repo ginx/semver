@@ -59,7 +59,7 @@ async function run() {
 
     request = await octokit.git.getRef({
       ...context.repo,
-      ref: context.ref
+      ref: context.ref.replace('refs/', '')
     })
 
     let ref = request.data

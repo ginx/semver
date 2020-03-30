@@ -46,15 +46,16 @@ async function run() {
 
     let request;
 
-    console.log(process.env)
-    console.log(context)
-    console.log(context.repo)
+    // console.log(process.env)
+    // console.log(context)
+    // console.log(context.repo)
 
-    core.debug(process.env)
-    core.debug(context)
-    core.debug(context.repo)
+    // core.debug(process.env)
+    // core.debug(context)
+    // core.debug(context.repo)
 
     semver.inc(version, 'prerelease', 'beta')
+    console.log(version.version);
 
     request = await octokit.git.createTag({
       ...context.repo,

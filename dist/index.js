@@ -3222,11 +3222,11 @@ async function run() {
     // core.debug(context)
     // core.debug(context.repo)
 
-    if (context.payload.head_commit.message.indexOf("#major")) {
+    if (context.payload.head_commit.message.indexOf("#major") != -1) {
       semver.inc(version, 'major')
-    } else if (context.payload.head_commit.message.indexOf("#minor")) {
+    } else if (context.payload.head_commit.message.indexOf("#minor") != -1) {
       semver.inc(version, 'minor')
-    } else if (context.payload.head_commit.message.indexOf("#patch")) {
+    } else if (context.payload.head_commit.message.indexOf("#patch") != -1) {
       semver.inc(version, 'patch')
     } else {
       semver.inc(version, 'prerelease', 'beta')

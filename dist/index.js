@@ -3273,6 +3273,7 @@ async function run() {
     // console.log(version);
   }
   catch (error) {
+    console.log(error)
     core.setFailed(error.message);
   }
 }

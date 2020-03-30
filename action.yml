@@ -6,8 +6,14 @@ inputs:
     required: true
     default: '1000'
 outputs:
-  time: # output will be available to future steps 
-    description: 'The message to output'
+  version: # output will be available to future steps 
+    description: 'The version'
+  major: # output will be available to future steps 
+    description: 'The major version'
+  minor: # output will be available to future steps 
+    description: 'The minor version'
+  patch: # output will be available to future steps 
+    description: 'The patch version'
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -6,6 +6,9 @@ on:
       - master
       - 'releases/*'
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   # unit tests
   units:
